@@ -1,0 +1,28 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  db:
+    image: mongo
+    container_name: dbsvr
+    volumes:
+     - /Users/sumaskaewsangngam/Desktop/Test/db:/data/db
+    ports:
+       - 27017:27017
+
+
+  www:
+    image: webapi
+    container_name: www
+    depends_on:
+      - db
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Development
+     - BookStoreDatabase__ConnectionString=mongodb://dbsvr:27017
+    ports:
+      - 80:80
+
+
+
+
