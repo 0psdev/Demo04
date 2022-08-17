@@ -13,7 +13,7 @@ services:
 
 
   www:
-    image: webapi
+    image: ops2dev/demo04
     container_name: www
     depends_on:
       - db
